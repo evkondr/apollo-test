@@ -7,7 +7,7 @@ const TodoContainer = () => {
   const {loading, error, data} = useQuery(ALL_TODOS, {
     variables: {
       page: 1
-    }
+    },
   });
   if(error){
     return <div className="App">

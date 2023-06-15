@@ -1,21 +1,32 @@
 import React from "react";
 import TodoContainer from "./components/TodoContainer";
+import Root from "./routes/Root";
 import AddForm from "./components/AddForm";
-import { Layout, Space } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+import { Layout } from 'antd';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "/todos",
+        element: <TodoContainer />,
+      },
+    ],
+  },
+])
 
 const mainContent = {
   height: "100vh",
 }
 function App() {
   return <Layout style={ mainContent }>
-    <Sider breakpoint="lg" collapsedWidth="0" style={{position: "fixed", hight: "100vh", left: 0, top: 0, bottom: 0}}>
-      Sider
-    </Sider>
-    <Layout>
-      <Header>Header</Header>
-      <Content>Content</Content>
-    </Layout>
+    <RouterProvider router={router}/>
   </Layout>
 }
 
